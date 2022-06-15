@@ -4,11 +4,12 @@ import com.google.gson.annotations.SerializedName
 
 data class OrderX(
     @SerializedName("sauce")
-    val sauce: List<String>,
+    val sauce: List<String>?,
     @SerializedName("size")
-    val size: String,
+    val size: String?,
     @SerializedName("toppings")
-    val toppings: List<String>,
+    val toppings: List<String>?,
     @SerializedName("type")
-    val type: String
+    val type: String?,
+    val pizzaPrice: String
 )

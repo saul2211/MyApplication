@@ -16,25 +16,15 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-
-    private val TAG = "PIZZA PRICE "
-
-    //private val viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
-
     private lateinit var viewModel: OrderViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        // viewModel = ViewModelProvider
-
     }
 
-
-    override fun onCreateView(name: String, context: Context, attrs: AttributeSet): View? {
-
+    override fun onStart() {
+        super.onStart()
         viewModel = ViewModelProvider(this).get(OrderViewModel::class.java)
 
         viewModel.getAllOrders()
@@ -44,21 +34,7 @@ class MainActivity : AppCompatActivity() {
             when (state) {
 
                 is ResponseStatus.SUCCESS -> {
-                    state.orders.forEach { orderX ->
-                        when (orderX.size) {
-                            "large" -> {
-                                Log.i(TAG, "15€")
-                            }
-                            "medium" -> {
-                                Log.i(TAG, "8€")
-                            }
-                            "small" -> {
-                                Log.i(TAG, "4€")
-                            }
-
-                        }
-
-                    }
+                    println(state.orders)
                 }
 
                 is ResponseStatus.ERROR -> {
@@ -74,9 +50,6 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-
-        return super.onCreateView(name, context, attrs)
     }
-
 
 }
